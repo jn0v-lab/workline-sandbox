@@ -10,3 +10,8 @@ func Expired(issued, now int64) bool {
 func Remaining(issued, now int64) int64 {
 	return TokenTTL - (now - issued)
 }
+
+// Valid says whether a token issued at issued is still valid at now.
+func Valid(issued, now int64) bool {
+	return Remaining(issued, now) >= 0
+}
