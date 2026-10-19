@@ -1,0 +1,11 @@
+# A try of workline's merge queue run (ADR-0050, step 8): a gate that
+# passes on each pull request alone and fails when two ship together.
+routing:
+  events:
+    merge-request: [committer, "gate:merge"]
+gates:
+  merge:
+    checks:
+      - id: apart
+        run: sh ci/apart.sh
+        output: exit
